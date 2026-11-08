@@ -1,0 +1,390 @@
+/* Theme and Template */
+:root {
+  /* Color with 60% - 30% - 10%  */
+  --primary-color: none;
+  --secondary-color: none;
+  --tertiary-color: none;
+  --trial-color: none;
+
+  /* Typography */
+  --font-main: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+
+  --text-strong: #1d1d1f; /* headings, titles */
+  --text-body: #3a3a3c; /* paragraphs */
+  --text-muted: #9a9a9f; /* descriptions, labels */
+
+  /* Spacing */
+  --sidebar-width: 13rem;
+  --content-gap-trial: 1rem;
+
+  /* Article layout (shared by every block so they all line up) */
+  --article-width: 65rem; /* max width of the reading column */
+  --gutter: 2rem; /* space kept free at the left/right screen edges */
+
+  /* Transition */
+  --divider-color: #e5e5e7;
+}
+
+* {
+  box-sizing: border-box;
+
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%; /* stops iOS from enlarging text in landscape */
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+
+  font-family: var(--font-main);
+  color: var(--text-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Divider */
+.divider-header {
+  width: 70%;
+
+  margin: 0 auto 0.2rem auto;
+
+  border: none;
+  border-top: 3px solid var(--divider-color);
+  border-radius: 5px;
+}
+
+.divider-footer {
+  width: 70%;
+
+  margin: 2rem auto 0 auto;
+
+  border: none;
+  border-top: 3px solid var(--divider-color);
+  border-radius: 5px;
+}
+
+/* Header
+   Every block below uses the same fluid width, so on any screen the
+   section label, title, summary, text and references share one left edge. */
+.index,
+.title,
+.summary,
+.content,
+.footer {
+  width: min(var(--article-width), 100% - 2 * var(--gutter));
+  height: auto;
+
+  background-color: none;
+  text-align: left;
+}
+
+.index {
+  margin: 2rem auto 0 auto;
+
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.title {
+  margin: 0.5rem auto 0 auto;
+
+  font-size: clamp(1.6rem, 1.2rem + 1.8vw, 2.25rem);
+  font-weight: 1000;
+  line-height: 1.3;
+  color: var(--text-strong);
+
+  overflow-wrap: break-word;
+  text-wrap: balance;
+}
+
+.summary {
+  margin: 0.6rem auto 1rem auto;
+  padding-bottom: 1rem;
+
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+/* Content */
+.content {
+  margin: 0 auto 0 auto;
+}
+
+.content > .subtitle {
+  margin: 2rem auto 0.2rem auto;
+
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--text-strong);
+}
+
+.content > p {
+  margin: 0 auto 0.5rem auto;
+
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-body);
+}
+
+/* Footer */
+.footer {
+  margin: 0 auto 2rem auto;
+}
+
+.footer > .subtitle {
+  margin: 2rem auto 0.2rem auto;
+
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--text-strong);
+}
+
+.footer > p {
+  margin: 0.3rem auto 0.2rem auto;
+
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-body);
+
+  /* Long reference URLs must wrap instead of pushing the page sideways */
+  overflow-wrap: anywhere;
+}
+
+/* ==========================================================================
+   Future-proofing for figures, tables and code (not used yet, but safe)
+   ========================================================================== */
+
+.content img,
+.content video,
+.content svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.content figure {
+  margin: 1.5rem auto;
+}
+
+.content figcaption {
+  margin-top: 0.4rem;
+
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+
+.content table {
+  display: block; /* lets a wide table scroll inside itself */
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.content pre {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* ==========================================================================
+   Links, focus and interaction (links are added by template_article.js)
+   ========================================================================== */
+
+.footer a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--text-strong);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@media (hover: hover) {
+  .footer a:hover {
+    color: var(--text-strong);
+  }
+}
+
+/* Back-to-top button (created by template_article.js) */
+.back-to-top {
+  position: fixed;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 2.75rem; /* 44px minimum touch target */
+  height: 2.75rem;
+
+  border: none;
+  border-radius: 50%;
+  background-color: var(--text-strong);
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+
+  font-family: inherit;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .back-to-top {
+    transition: none;
+  }
+}
+
+@media print {
+  .back-to-top {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   Responsive
+   Desktop-first: the rules above are the desktop layout.
+   Breakpoints:  ≤1200  small desktop / landscape tablet
+                 ≤1024  tablet
+                 ≤768   small tablet
+                 ≤600   phone
+                 ≤400   small phone
+                 ≥1800  large / 4K screens
+   ========================================================================== */
+
+/* ---- Small desktop / landscape tablet ---- */
+@media (max-width: 1200px) {
+  :root {
+    --gutter: 2.5rem;
+  }
+}
+
+/* ---- Tablet ---- */
+@media (max-width: 1024px) {
+  :root {
+    --gutter: 2rem;
+  }
+
+  .divider-header,
+  .divider-footer {
+    width: 80%;
+  }
+}
+
+/* ---- Small tablet ---- */
+@media (max-width: 768px) {
+  :root {
+    --gutter: 1.5rem;
+  }
+
+  .index {
+    margin-top: 1.5rem;
+  }
+
+  .content > .subtitle,
+  .footer > .subtitle {
+    margin-top: 1.75rem;
+  }
+}
+
+/* ---- Phone ---- */
+@media (max-width: 600px) {
+  :root {
+    --gutter: 1.25rem;
+  }
+
+  .divider-header,
+  .divider-footer {
+    width: calc(100% - 2 * var(--gutter));
+  }
+
+  .index {
+    margin-top: 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  .summary {
+    font-size: 0.95rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .content > .subtitle,
+  .footer > .subtitle {
+    font-size: 1.125rem;
+    line-height: 1.4;
+    margin-top: 1.5rem;
+  }
+
+  /* Slightly roomier body text reads better on a small screen */
+  .content > p {
+    font-size: 1rem;
+    line-height: 1.65;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer > p {
+    font-size: 0.85rem;
+    margin-bottom: 0.4rem;
+  }
+}
+
+/* ---- Small phone (e.g. iPhone SE, 320-400px) ---- */
+@media (max-width: 400px) {
+  :root {
+    --gutter: 1rem;
+  }
+
+  .content > .subtitle,
+  .footer > .subtitle {
+    font-size: 1.05rem;
+  }
+
+  .back-to-top {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+/* ---- Large / 4K screens: scale up instead of floating in white space ---- */
+@media (min-width: 1800px) {
+  html {
+    font-size: 112.5%; /* 18px base, everything in rem scales with it */
+  }
+}
+
+@media (min-width: 2400px) {
+  html {
+    font-size: 137.5%; /* 22px base */
+  }
+}

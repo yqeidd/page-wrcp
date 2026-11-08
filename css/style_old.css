@@ -1,0 +1,165 @@
+/* Theme and Template */
+:root {
+  /* Color with 60% - 30% - 10%  */
+  --primary-color: none;
+  --secondary-color: none;
+  --tertiary-color: none;
+  --trial-color: none;
+
+  /* Typography */
+  --font-main: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+
+  --text-strong: #1d1d1f; /* headings, titles */
+  --text-body: #3a3a3c; /* paragraphs */
+  --text-muted: #9a9a9f; /* descriptions, labels */
+
+  /* Spacing */
+  --sidebar-width: 13rem;
+  --content-gap-trial: 1rem;
+
+  /* Transition */
+  --divider-color: #e5e5e7;
+}
+
+* {
+  box-sizing: border-box;
+
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+
+  font-family: var(--font-main);
+  color: var(--text-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+}
+
+.divider {
+  width: 70%;
+
+  margin: 0 auto 1rem auto;
+
+  border: none;
+  border-top: 3px solid var(--divider-color);
+  border-radius: 5px;
+}
+
+/* Home */
+.home-about {
+  width: 60rem;
+  height: auto;
+
+  margin: 2rem auto 1rem auto;
+  padding: 2rem;
+
+  background-color: none;
+  text-align: left;
+
+  font-size: 1rem;
+  font-weight: 1000;
+  line-height: 1.5;
+  color: var(--text-body);
+}
+
+/* Main Content */
+.main-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  column-gap: 3rem;
+
+  width: 80%;
+
+  margin: 2rem auto;
+
+  background-color: none;
+}
+
+.main-content > section {
+  flex: 1;
+}
+
+/* Content Left, Middle, and Right */
+.content-left,
+.content-middle,
+.content-right {
+  display: flex;
+  flex-direction: column;
+
+  background-color: none;
+
+  align-items: center;
+}
+
+/* Content Card */
+.content-card {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+
+  margin: 0 0 3rem 0;
+}
+
+.content-image {
+  display: flex;
+  flex-direction: row;
+
+  width: 100%;
+  height: 100%;
+
+  margin: 0.5rem auto;
+
+  background-color: rgba(219, 219, 219, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+
+  justify-content: center;
+  align-items: center;
+}
+
+.content-image > img {
+  display: block;
+
+  width: 95%;
+  height: 95%;
+  object-fit: cover;
+
+  border-radius: 10px;
+}
+
+.content-title {
+  width: 100%;
+
+  margin: 0.01rem 0;
+
+  text-align: left;
+
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text-strong);
+}
+
+.content-description {
+  width: 100%;
+
+  text-align: left;
+
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-muted);
+}

@@ -1,0 +1,442 @@
+/* Theme and Template */
+:root {
+  /* Color with 60% - 30% - 10%  */
+  --primary-color: none;
+  --secondary-color: none;
+  --tertiary-color: none;
+  --trial-color: none;
+
+  /* Typography */
+  --font-main: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+
+  --text-strong: #1d1d1f; /* headings, titles */
+  --text-body: #3a3a3c; /* paragraphs */
+  --text-muted: #9a9a9f; /* descriptions, labels */
+  --text-intro: #6e6e73; /* large intro paragraph */
+
+  /* Spacing */
+  --sidebar-width: 13rem;
+  --content-gap-trial: 1rem;
+
+  /* Transition */
+  --divider-color: #e5e5e7;
+}
+
+* {
+  box-sizing: border-box;
+
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+
+  font-family: var(--font-main);
+  color: var(--text-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+}
+
+.divider {
+  width: 70%;
+
+  margin: 0 auto 1rem auto;
+
+  border: none;
+  border-top: 3px solid var(--divider-color);
+  border-radius: 5px;
+}
+
+/* Home */
+.home-about {
+  width: 100%;
+  max-width: 60rem;
+  height: auto;
+
+  margin: 2rem auto 1rem auto;
+  padding: 2rem;
+
+  background-color: none;
+  text-align: left;
+
+  font-size: clamp(1.15rem, 0.8rem + 1.3vw, 1.65rem);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  color: var(--text-intro);
+
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+}
+
+/* Greeting
+   Small muted line above the big intro paragraph. Shares the same width
+   and side padding as .home-about so both start on the same left edge at
+   every screen size (padding mirrors .home-about in each breakpoint). */
+.greeting {
+  width: 100%;
+  max-width: 60rem;
+
+  margin: 2rem auto 0 auto;
+  padding: 0.6rem 2rem 0;
+
+  text-align: left;
+
+  font-size: clamp(0.9rem, 0.85rem + 0.2vw, 1.05rem);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0;
+  color: var(--text-muted);
+
+  overflow-wrap: break-word;
+}
+
+/* Pronunciation floats up and to the right of the word, like a footnote */
+.greeting-pron {
+  position: relative;
+  top: -0.7em;
+
+  margin-left: 0.15em;
+
+  font-size: 0.7em;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--text-strong);
+  white-space: nowrap;
+}
+
+/* Gap between the greeting and the intro paragraph */
+.greeting + .home-about {
+  margin-top: 0;
+  padding-top: 1.25rem;
+}
+
+/* Main Content */
+.main-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  column-gap: 3rem;
+
+  width: 80%;
+  max-width: 90rem;
+
+  margin: 2rem auto;
+
+  background-color: none;
+}
+
+.main-content > section {
+  flex: 1;
+  min-width: 0; /* lets columns shrink instead of overflowing */
+}
+
+/* Content Left, Middle, and Right */
+.content-left,
+.content-middle,
+.content-right {
+  display: flex;
+  flex-direction: column;
+
+  background-color: none;
+
+  align-items: center;
+}
+
+/* Content Card */
+.content-card {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+
+  margin: 0 0 3rem 0;
+}
+
+.content-image {
+  display: flex;
+  flex-direction: row;
+
+  width: 100%;
+  height: 100%;
+
+  margin: 0.5rem auto;
+
+  background-color: rgba(219, 219, 219, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+
+  justify-content: center;
+  align-items: center;
+}
+
+.content-image > img {
+  display: block;
+  max-width: 100%;
+
+  width: 95%;
+  height: 95%;
+  object-fit: cover;
+
+  border-radius: 10px;
+}
+
+.content-title {
+  width: 100%;
+
+  margin: 0.01rem 0;
+
+  text-align: left;
+
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text-strong);
+
+  overflow-wrap: anywhere;
+}
+
+.content-description {
+  width: 100%;
+
+  text-align: left;
+
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+
+/* ==========================================================================
+   Accessibility & interaction
+   ========================================================================== */
+
+a:focus-visible {
+  outline: 2px solid var(--text-strong);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Hover only on devices that actually hover (avoids sticky hover on touch) */
+@media (hover: hover) {
+  .content-title:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .content-image:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14);
+  }
+}
+
+/* Links that don't lead anywhere yet (set by script.js) */
+a.is-disabled {
+  cursor: default;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ==========================================================================
+   Responsive
+   Desktop-first: base styles above are the 3-column desktop layout.
+   Breakpoints:  ≤1200  small desktop / landscape tablet
+                 ≤1024  tablet           -> 2 columns
+                 ≤768   small tablet
+                 ≤600   phone            -> 1 column
+                 ≤400   small phone
+                 ≥1800  large / 4K screens
+   ========================================================================== */
+
+/* ---- Small desktop / landscape tablet ---- */
+@media (max-width: 1200px) {
+  .main-content {
+    width: 88%;
+    column-gap: 2rem;
+  }
+
+  .home-about {
+    padding: 2rem 1.5rem;
+  }
+}
+
+/* ---- Tablet: 3 columns -> 2 columns ---- */
+@media (max-width: 1024px) {
+  .main-content {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 2rem;
+    align-items: start;
+
+    width: 90%;
+    margin: 1.5rem auto;
+  }
+
+  /* Dissolve the three column wrappers so cards flow into one grid.
+     Reading order stays: left, middle, right. */
+  .content-left,
+  .content-middle,
+  .content-right {
+    display: contents;
+  }
+
+  .divider {
+    width: 80%;
+  }
+}
+
+/* ---- Small tablet ---- */
+@media (max-width: 768px) {
+  .home-about {
+    margin: 1.5rem auto 0.5rem;
+    padding: 1.5rem 1rem;
+  }
+
+  .main-content {
+    width: 92%;
+    column-gap: 1.25rem;
+  }
+
+  .content-card {
+    margin-bottom: 2rem;
+  }
+}
+
+/* ---- Phone: 2 columns -> 1 column (photo first, then title, then description) ---- */
+@media (max-width: 600px) {
+  .home-about {
+    margin-top: 1rem;
+    padding: 1rem;
+  }
+
+  .divider {
+    width: 88%;
+    margin-bottom: 0.5rem;
+  }
+
+  .main-content {
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+    padding: 0 1rem;
+    margin: 1rem auto;
+  }
+
+  .content-card {
+    margin-bottom: 2rem;
+  }
+
+  /* Image block sits above the text, full width of the screen */
+  .content-image {
+    margin: 0 0 0.75rem;
+  }
+
+  .content-image > img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  .content-title {
+    display: block;
+    margin: 0 0 0.25rem;
+    font-size: 1.05rem;
+    line-height: 1.35;
+    padding: 0.25rem 0; /* easier tap target */
+  }
+
+  .content-description {
+    font-size: 0.95rem;
+  }
+}
+
+/* ---- Small phone (e.g. iPhone SE, 320-400px) ---- */
+@media (max-width: 400px) {
+  .home-about {
+    padding: 0.75rem;
+  }
+
+  .main-content {
+    padding: 0 0.75rem;
+  }
+
+  .content-title {
+    font-size: 1rem;
+  }
+
+  .content-description {
+    font-size: 0.9rem;
+  }
+}
+
+/* ---- Phones in landscape: keep the page from feeling stretched ---- */
+@media (max-height: 500px) and (orientation: landscape) {
+  .main-content {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-about {
+    margin-top: 0.5rem;
+  }
+}
+
+/* ---- Large / 4K screens: scale up instead of floating in white space ---- */
+@media (min-width: 1800px) {
+  html {
+    font-size: 112.5%; /* 18px base, everything in rem scales with it */
+  }
+}
+
+@media (min-width: 2400px) {
+  html {
+    font-size: 137.5%; /* 22px base */
+  }
+}
+
+/* ==========================================================================
+   Greeting - responsive (kept in step with the .home-about breakpoints)
+   ========================================================================== */
+
+@media (max-width: 1200px) {
+  .greeting {
+    padding: 0.6rem 1.5rem 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .greeting {
+    margin-top: 1.5rem;
+    padding: 0.6rem 1rem 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .greeting {
+    margin-top: 1.25rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .greeting {
+    padding: 0.6rem 0.75rem 0;
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .greeting {
+    margin-top: 0.75rem;
+  }
+}
